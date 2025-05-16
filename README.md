@@ -79,3 +79,12 @@ cd ui && npm run dev
 ```bash
 cd agent && pyinstaller --onefile run.py --name ProcessMonitorAgent
 ```
+
+## Further scopes
+
+Some features, I wanted to implement but couldn't due to time constraints:
+
+- **Authentication:** Implement user authentication for secure access to the API.
+- **Authorization:** Role-based access control for different user roles (admin, user).
+- **Data Visualization:** Charting can be done using historical data from API.
+- **Testing:** Unit tests for API endpoints and WebSocket connections (using pyTest).
