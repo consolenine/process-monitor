@@ -88,3 +88,4 @@ Some features, I wanted to implement but couldn't due to time constraints:
 - **Authorization:** Role-based access control for different user roles (admin, user).
 - **Data Visualization:** Charting can be done using historical data from API.
 - **Testing:** Unit tests for API endpoints and WebSocket connections (using pyTest).
+- Rewrite frontend with React for better performance.
