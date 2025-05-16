@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+.text-gradient {
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.machine-title-card {
+    @apply relative flex flex-col items-start justify-between min-h-12 p-2;
+}
+.machine-title-card.active {
+    @apply border-l-4 border-l-gray-200;
+}
+.system-graph-card {
+    @apply bg-stone-900 rounded-md p-2;
+}
+
+/* Tabs */
+
+.tab-header-group .tab-header {
+    @apply text-sm font-medium text-gray-500 p-2 rounded-md;
+}
+.tab-header.active {
+    @apply text-black font-bold;
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+.process-table {
+    @apply overflow-y-auto max-h-[450px] rounded-md
+}
+.tab-header {
+    cursor: pointer;
+}
+.process-table table {
+    @apply min-w-full text-sm text-left text-gray-300;
+}
+.process-table thead {
+    @apply sticky top-0 bg-stone-900! z-10;
+}
+.process-table th {
+    @apply px-4 py-2 font-semibold text-gray-200 uppercase tracking-wider;
+}
+.process-table .toggle-btn {
+    @apply text-gray-300 hover:text-white font-bold text-lg select-none;
+}
+.process-table tbody tr {
+    @apply bg-stone-700 hover:bg-stone-600 transition duration-150 rounded-l-md;
+}
+
+/* Form */
+button[type="submit"] {
+    @apply rounded-md p-2 px-4 text-black font-bold cursor-pointer;
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+}

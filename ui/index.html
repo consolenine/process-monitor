@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Process Monitor</title>
+    <link rel="stylesheet" href="/src/assets/styles/main.css" />
+  </head>
+  <body>
+    <div id="root" class="min-h-screen bg-stone-950 text-stone-100">
+      <div class="container-fluid flex min-h-screen p-5 gap-8">
+        <div class="sidebar w-64 bg-stone-900 rounded-lg">
+            <div class="sidebar-header p-2">
+                <h1 class="text-2xl text-gradient font-bold text-center">Process Monitor</h1>
+            </div>
+            <div class="sidebar-content">
+                <ul id="machine-list" class="list-none">
+                </ul>
+            </div>
+        </div>
+        <div class="content flex-1">
+          <div class="main mt-4">
+            <div class="system-graphs flex gap-4">
+                <div class="system-graph-card">
+                    <h2 class="text-sm font-bold">CPU Usage</h2>
+                    <div class="system-graph">
+                    <canvas id="cpu-usage"></canvas>
+                    </div>
+                </div>
+                <div class="system-graph-card">
+                    <h2 class="text-sm font-bold">Memory Usage</h2>
+                    <div class="system-graph">
+                    <canvas id="memory-usage"></canvas>
+                    </div>
+                </div>
+                <div class="system-graph-card">
+                    <h2 class="text-sm font-bold">Network Usage</h2>
+                    <div class="system-graph">
+                    <canvas id="network-usage"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="tabs mt-4">
+              <div class="tab-header-group flex gap-4">
+                <div class="tab-header active" data-target="#processes">
+                  Running Processes
+                </div>
+                <div class="tab-header" data-target="#system-config">
+                  System Config
+                </div>
+              </div>
+              <div class="tab-content-group bg-stone-800 mt-4 rounded-lg">
+                <div class="tab-content active" id="processes">
+                  <div class="process-table">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>PID</th>
+                          <th>Name</th>
+                          <th>CPU</th>
+                          <th>Memory</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="process-list">
+                        <!-- Process list will be populated here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-content" id="system-config">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

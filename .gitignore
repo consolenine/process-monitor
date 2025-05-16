@@ -1,0 +1,63 @@
+# --- General ---
+__pycache__/
+*.py[cod]
+*.env
+*.log
+*.sqlite3
+*.db
+*.DS_Store
+.env.*
+*.swp
+*.bak
+*.tmp
+*.coverage
+*.egg-info/
+.Python
+.mypy_cache/
+pytest_cache/
+.vscode/
+.idea/
+*.iml
+
+# --- Virtual Environments ---
+venv/
+env/
+*/venv/
+*/env/
+.venv/
+
+# --- Backend (Django) ---
+backend/staticfiles/
+backend/media/
+backend/db.sqlite3
+backend/.env
+backend/*.pyc
+backend/**/__pycache__/
+backend/**/migrations/**/
+!backend/**/migrations/__init__.py
+
+# --- UI (Vite + Tailwind) ---
+ui/node_modules/
+ui/dist/
+ui/.vite/
+ui/.env
+ui/.eslintcache
+
+# --- Agent (Python project) ---
+agent/__pycache__/
+agent/.env
+agent/*.pyc
+agent/*.log
+agent/*.egg-info/
+agent/.mypy_cache/
+agent/.pytest_cache/
+agent/venv/
+agent/env/
+agent/build
+agent/*.spec
+
+# --- Optional: Mac/Linux/Windows system files ---
+*.orig
+Thumbs.db
+ehthumbs.db
+.DS_Store
