@@ -25,9 +25,6 @@ class MachineSnapshot(models.Model):
     used_disk = models.BigIntegerField()
     available_disk = models.BigIntegerField()
 
-    network_sent = models.BigIntegerField()      # bytes
-    network_received = models.BigIntegerField()  # bytes
-
     def __str__(self):
         return f"MachineSnapshot: {self.batch.machine.hostname} @ {self.timestamp}"
 

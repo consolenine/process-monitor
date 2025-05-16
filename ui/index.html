@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="root" class="min-h-screen bg-stone-950 text-stone-100">
-      <div class="container-fluid flex min-h-screen p-5 gap-8">
+      <div class="container-fluid flex h-screen p-5 gap-8">
         <div class="sidebar w-64 bg-stone-900 rounded-lg">
             <div class="sidebar-header p-2">
                 <h1 class="text-2xl text-gradient font-bold text-center">Process Monitor</h1>
@@ -19,28 +19,22 @@
                 </ul>
             </div>
         </div>
-        <div class="content flex-1">
-          <div class="main mt-4">
-            <div class="system-graphs flex gap-4">
-                <div class="system-graph-card">
-                    <h2 class="text-sm font-bold">CPU Usage</h2>
-                    <div class="system-graph">
-                    <canvas id="cpu-usage"></canvas>
-                    </div>
-                </div>
-                <div class="system-graph-card">
-                    <h2 class="text-sm font-bold">Memory Usage</h2>
-                    <div class="system-graph">
-                    <canvas id="memory-usage"></canvas>
-                    </div>
-                </div>
-                <div class="system-graph-card">
-                    <h2 class="text-sm font-bold">Network Usage</h2>
-                    <div class="system-graph">
-                    <canvas id="network-usage"></canvas>
-                    </div>
-                </div>
-            </div>
+        <div class="content flex-1 h-full">
+          <div class="main h-full">
+<!--            <div class="system-graphs flex gap-4">-->
+<!--                <div class="system-graph-card">-->
+<!--                    <h2 class="text-sm font-bold">Memory Usage</h2>-->
+<!--                    <div class="system-graph">-->
+<!--                    <canvas id="memory-usage"></canvas>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="system-graph-card">-->
+<!--                    <h2 class="text-sm font-bold">Disk Usage</h2>-->
+<!--                    <div class="system-graph">-->
+<!--                    <canvas id="disk-usage"></canvas>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="tabs mt-4">
               <div class="tab-header-group flex gap-4">
                 <div class="tab-header active" data-target="#processes">

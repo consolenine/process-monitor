@@ -14,7 +14,7 @@ from ...models import (
     SnapshotBatchSerializer,
     MachineSnapshotSerializer,
 )
-from ...utils import build_process_tree
+from ...utils import build_process_tree, apply_time_range_filter
 
 class SnapshotBatchPagination(PageNumberPagination):
     page_size = 100
@@ -33,7 +33,8 @@ class SnapshotBatchViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         machine_id = request.query_params.get("machine_id")
-        time_range = request.query_params.get("time_range")  # e.g., "1h", "3h", "1d"
+        time_range = request.query_params.get("since")  # e.g., "30m", "1h", "3h", "1d"
+        include_process_tree = request.query_params.get("include_process_tree", "1") # 1 == True; 0 == False
         qs = self.get_queryset()
 
         if not machine_id:
@@ -43,13 +44,7 @@ class SnapshotBatchViewSet(viewsets.ModelViewSet):
 
         # Time range filtering
         if time_range:
-            now = timezone.now()
-            if time_range == "1h":
-                qs = qs.filter(timestamp__gte=now - timedelta(hours=1))
-            elif time_range == "3h":
-                qs = qs.filter(timestamp__gte=now - timedelta(hours=3))
-            elif time_range == "1d":
-                qs = qs.filter(timestamp__gte=now - timedelta(days=1))
+            qs = apply_time_range_filter(qs, time_range)
 
         qs = qs.order_by("-timestamp")
 
@@ -59,7 +54,7 @@ class SnapshotBatchViewSet(viewsets.ModelViewSet):
 
         page = self.paginate_queryset(qs)
         if page is not None:
-            serializer = self.get_serializer(page, many=True)
+            serializer = self.get_serializer(page, many=True, context={'include_process_tree': include_process_tree})
             data = serializer.data
 
             for batch in data:

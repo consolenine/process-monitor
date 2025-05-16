@@ -3,6 +3,7 @@ import json
 import os
 from datetime import datetime
 from platformdirs import user_config_dir
+from requests import RequestException
 
 from .api import ApiClient
 from .utils import get_machine_config, get_process_stats
@@ -35,9 +36,18 @@ class Agent:
         with open(self.config_file_path, "w") as f:
             json.dump(self.__state, f)
 
+    def _reset(self):
+        self.__state = {
+            "is_registered": False,
+            "machine_id": "",
+            "enabled": True,
+            "polling_interval": 5
+        }
+
     def _register(self):
         if self.__state["is_registered"]:
             return
+        print("Registering...")
         machine_config = get_machine_config()
         result = self._client.register(**machine_config)
         if result:
@@ -51,11 +61,19 @@ class Agent:
         while self.running:
             try:
                 if self.__state["is_registered"]:
-                    config = self._client.get_agent_config(self.__state["machine_id"])
-                    if config:
-                        self.__state["enabled"] = config.get("enabled", True)
-                        self.__state["polling_interval"] = config.get("polling_interval", 5)
-                        self._save()
+                    try:
+                        config = self._client.get_agent_config(self.__state["machine_id"])
+                        if config:
+                            self.__state["enabled"] = config.get("enabled", True)
+                            self.__state["polling_interval"] = config.get("polling_interval", 5)
+                            self._save()
+                    except RequestException as e:
+                        print("Agent")
+                        if e.response.status_code == 404:
+                            # Agent not registered
+                            self._reset()
+                            self._register()
+
             except Exception as e:
                 print(f"[Remote Config] Error: {e}")
             await asyncio.sleep(15)

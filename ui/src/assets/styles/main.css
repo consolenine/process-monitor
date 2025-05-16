@@ -32,7 +32,7 @@
 }
 
 .process-table {
-    @apply overflow-y-auto max-h-[450px] rounded-md
+    @apply overflow-y-auto max-h-[600px] rounded-md
 }
 .tab-header {
     cursor: pointer;

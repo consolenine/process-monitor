@@ -46,9 +46,7 @@ def get_process_stats():
         'available_ram': available_ram,
         'total_disk': disk.total,
         'used_disk': disk.used,
-        'available_disk': disk.free,
-        'network_sent': psutil.net_io_counters().bytes_sent,
-        'network_received': psutil.net_io_counters().bytes_recv
+        'available_disk': disk.free
     }
 
     return {

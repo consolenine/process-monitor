@@ -70,7 +70,8 @@ class BaseClient:
             return response.json()
         except RequestException as e:
             print(f"RequestException: {e}")
-            self._enqueue_failed(method, endpoint, kwargs)
+            if e.response.status_code >= 500:
+                self._enqueue_failed(method, endpoint, kwargs)
             raise e  # or return None / custom error
 
     def get(self, endpoint: str, **kwargs):

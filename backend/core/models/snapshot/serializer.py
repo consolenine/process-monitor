@@ -23,6 +23,12 @@ class SnapshotBatchSerializer(serializers.ModelSerializer):
         model = SnapshotBatch
         fields = ["machine_id", "timestamp", "machine_snapshot", "processes"]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        include_process_tree = self.context.get('include_process_tree', "1")
+        if include_process_tree == "0":
+            self.fields.pop('processes')
+
     def create(self, validated_data):
         machine_id = validated_data.pop("machine_id")
         machine_snapshot_data = validated_data.pop("machine_snapshot")
